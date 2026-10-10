@@ -1,0 +1,981 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8e5c8">
+  <meta name="description" content="A little birthday scrapbook made with all my love.">
+  <title>Happy Birthday, My Love ❤️</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Caveat:wght@500;700&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --wine: #7d201b;
+      --red: #b83c2c;
+      --peach: #f9c3a6;
+      --paper: #fff0d8;
+      --ink: #4c211b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 20px;
+    }
+
+    body {
+      background: #f8e5c8;
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .navbar {
+      max-width: 1150px;
+      margin: auto;
+      padding: 22px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      font: 700 1.2rem "Playfair Display", serif;
+      color: var(--wine);
+      text-decoration: none;
+    }
+
+    .hero {
+      width: min(1080px, 90%);
+      min-height: 550px;
+      margin: auto;
+      padding: 45px 0 65px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .eyebrow {
+      color: var(--red);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
+    h1, h2 {
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 7vw, 6rem);
+      line-height: 1;
+      margin-bottom: 25px;
+    }
+
+    h1 em, h2 em {
+      color: var(--red);
+    }
+
+    .intro {
+      max-width: 430px;
+      color: #795145;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    .main-btn {
+      display: inline-block;
+      background: var(--wine);
+      color: white;
+      padding: 15px 21px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 5px 5px 0 #dba58b;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .main-btn:hover {
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0 #dba58b;
+    }
+
+    .handwritten {
+      font-family: "Caveat", cursive;
+    }
+
+    .hero-text > .handwritten {
+      font-size: 1.6rem;
+      color: var(--red);
+      margin: 17px 0 0 25px;
+      transform: rotate(-5deg);
+    }
+
+    /* Scrapbook */
+    .scrapbook {
+      min-height: 430px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .sunburst {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: repeating-conic-gradient(
+        #eeb27f 0deg 8deg,
+        #f7d1a2 8deg 16deg
+      );
+      opacity: 0.7;
+    }
+
+    .photo {
+      position: absolute;
+      background: var(--paper);
+      border: 1px solid #d9b28b;
+      box-shadow: 0 16px 28px #7e3a2926;
+    }
+
+    .photo-back {
+      width: 200px;
+      height: 265px;
+      right: 5%;
+      top: 12%;
+      transform: rotate(10deg);
+      background: #d65c43;
+      color: #fff0d8;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .photo-back span {
+      font-size: 3.5rem;
+    }
+
+    .photo-back p {
+      font: italic 1.2rem "Playfair Display", serif;
+      margin-top: 10px;
+    }
+
+    /* CENTERED PHOTO CARD */
+    .photo-front {
+      width: 235px;
+      padding: 12px;
+      left: 50%;
+      top: 16%;
+      transform: translateX(-50%) rotate(-8deg);
+      z-index: 2;
+    }
+
+    .heart-art {
+      height: 205px;
+      background: linear-gradient(140deg, #f8b995, #e86f55);
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    /* CENTERED PICTURE */
+    .couple-photo {
+      display: block;
+      width: 100%;
+      height: 205px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .heart-art span {
+      color: #8d201d;
+      font-size: 7rem;
+      text-shadow: 5px 7px 0 #b94334;
+      transform: rotate(-10deg);
+    }
+
+    .heart-art i {
+      position: absolute;
+      right: 25px;
+      top: 15px;
+      font-size: 2.5rem;
+      color: #fff0d8;
+    }
+
+    .photo-front .handwritten {
+      text-align: center;
+      font-size: 1.7rem;
+      line-height: 1;
+      margin: 15px 0 5px;
+      color: var(--wine);
+    }
+
+    .tape {
+      position: absolute;
+      z-index: 3;
+      top: 9%;
+      left: 25%;
+      width: 95px;
+      height: 25px;
+      background: #f6d8a6c9;
+      transform: rotate(-24deg);
+    }
+
+    .sticker {
+      position: absolute;
+      right: 4%;
+      bottom: 10%;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #f6c45e;
+      border: 2px dashed #a94931;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      transform: rotate(12deg);
+      z-index: 4;
+    }
+
+    .sticker span {
+      font: 1.5rem "Caveat", cursive;
+    }
+
+    /* Birthday date strip */
+    .date-strip {
+      width: min(1080px, 90%);
+      margin: auto;
+      padding: 30px 0;
+      border-top: 1px solid #c98e6c;
+      border-bottom: 1px solid #c98e6c;
+      display: grid;
+      grid-template-columns: 120px 1fr 250px;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .date-stamp {
+      width: 110px;
+      height: 110px;
+      border: 1px solid var(--red);
+      outline: 1px dashed var(--red);
+      outline-offset: -7px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(-8deg);
+    }
+
+    .date-stamp small {
+      font-size: 0.42rem;
+      letter-spacing: 1px;
+    }
+
+    .date-stamp strong {
+      font: 700 1.5rem "Playfair Display", serif;
+      margin: 4px 0;
+    }
+
+    .date-message .eyebrow {
+      margin-bottom: 8px;
+    }
+
+    .date-message h2 {
+      font-size: 1.35rem;
+      line-height: 1.5;
+    }
+
+    .calendar {
+      padding: 14px;
+      background: #fff1d7;
+      border: 1px solid #d5a77c;
+      box-shadow: 4px 5px 0 #d7a47f;
+      transform: rotate(2deg);
+    }
+
+    .calendar h3 {
+      text-align: center;
+      font-size: 0.65rem;
+      color: var(--red);
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .weekdays, .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      gap: 5px;
+    }
+
+    .weekdays {
+      font-size: 0.6rem;
+      padding-bottom: 8px;
+    }
+
+    .days span {
+      font-size: 0.62rem;
+      padding: 4px 0;
+    }
+
+    .days .marked {
+      background: var(--red);
+      color: white;
+      border-radius: 50%;
+    }
+
+    .calendar .handwritten {
+      text-align: center;
+      color: var(--red);
+      font-size: 1rem;
+      margin-top: 9px;
+    }
+
+    /* Birthday letter */
+    .letter-section, .reasons-section {
+      width: min(900px, 90%);
+      margin: auto;
+      padding: 95px 0 70px;
+      text-align: center;
+    }
+
+    .letter-section h2, .reasons-section h2 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      margin-bottom: 35px;
+    }
+
+    .letter {
+      position: relative;
+      text-align: left;
+      background: var(--paper);
+      padding: clamp(28px, 6vw, 65px);
+      border: 1px solid #e0b58c;
+      box-shadow: 8px 9px 0 #d7a27d;
+      line-height: 1.9;
+      font-size: 0.94rem;
+      background-image: repeating-linear-gradient(
+        transparent 0 31px,
+        #c77b5520 32px
+      );
+      transform: rotate(-0.5deg);
+    }
+
+    .letter p {
+      margin-bottom: 18px;
+    }
+
+    .letter-heart {
+      position: absolute;
+      top: 12px;
+      right: 22px;
+      font-size: 2.5rem;
+      color: var(--red);
+    }
+
+    .greeting {
+      font-size: 1.8rem;
+      color: var(--red);
+    }
+
+    .signature {
+      color: var(--red);
+      font-size: 2rem;
+      line-height: 1.3;
+    }
+
+    .letter-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      border-top: 1px dashed #d2a27b;
+      padding-top: 15px;
+      margin-top: 25px;
+      color: #a76a53;
+      font-size: 0.55rem;
+      letter-spacing: 1px;
+    }
+
+    /* Reasons cards */
+    .reasons-section {
+      width: min(1080px, 90%);
+      padding-top: 55px;
+      padding-bottom: 100px;
+    }
+
+    .reasons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      text-align: left;
+    }
+
+    .reason {
+      padding: 28px;
+      min-height: 225px;
+      border: 1px solid #d9ac85;
+      box-shadow: 4px 5px 0 #d6a17d;
+    }
+
+    .reason > span {
+      font-size: 0.75rem;
+      color: #8c4c3b;
+    }
+
+    .reason h3 {
+      font: 1.5rem "Playfair Display", serif;
+      margin: 30px 0 12px;
+    }
+
+    .reason p {
+      font-size: 0.87rem;
+      line-height: 1.7;
+    }
+
+    .blush {
+      background: #f7c4ae;
+      transform: rotate(-1.5deg);
+    }
+
+    .cream {
+      background: #fff1d7;
+      transform: translateY(8px) rotate(1deg);
+    }
+
+    .sage {
+      background: #d4d2af;
+      transform: rotate(-0.8deg);
+    }
+
+    /* Closing message */
+    .closing {
+      position: relative;
+      text-align: center;
+      background: var(--wine);
+      color: #fff0d8;
+      padding: 70px 20px 85px;
+      overflow: hidden;
+    }
+
+    .closing::before, .closing::after {
+      content: "♡";
+      position: absolute;
+      font-size: 10rem;
+      color: #f3b99a;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .closing::before {
+      left: 4%;
+      top: 10%;
+    }
+
+    .closing::after {
+      right: 4%;
+      bottom: 0;
+    }
+
+    .flower {
+      display: block;
+      color: #f1bb9b;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .closing .eyebrow {
+      color: #f2b79b;
+    }
+
+    .closing h2 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .closing > p:not(.eyebrow):not(.handwritten):not(.surprise-message) {
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.8;
+      color: #f5d8c4;
+    }
+
+    .closing-sign {
+      font-size: 2rem;
+      color: #f4c2a2;
+      margin: 22px 0;
+    }
+
+    .surprise-btn {
+      position: relative;
+      z-index: 2;
+      border: 0;
+      background: #f4c2a2;
+      color: var(--wine);
+      padding: 15px 22px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 #4f1412;
+    }
+
+    .surprise-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .surprise-message {
+      max-width: 500px;
+      margin: 25px auto 0;
+      line-height: 1.8;
+      animation: fadeIn 0.7s ease;
+    }
+
+    footer {
+      padding: 22px 10px;
+      text-align: center;
+      font-size: 0.62rem;
+      letter-spacing: 1px;
+      color: #92533f;
+    }
+
+    .floating-heart {
+      position: fixed;
+      bottom: -30px;
+      z-index: 20;
+      pointer-events: none;
+      color: #f4a18c;
+      animation: floatUp 3s ease-in forwards;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+      }
+      15% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-105vh) rotate(35deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 760px) {
+      .navbar {
+        padding: 18px 5%;
+      }
+
+      .logo {
+        font-size: 1rem;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 35px;
+        gap: 0;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 12vw, 4.5rem);
+      }
+
+      .intro {
+        margin-inline: auto;
+      }
+
+      .hero-text > .handwritten {
+        margin-left: 0;
+      }
+
+      .scrapbook {
+        min-height: 390px;
+      }
+
+      .sunburst {
+        width: 275px;
+        height: 275px;
+      }
+
+      /* Keep photo centered on mobile */
+      .photo-front {
+        left: 50%;
+        width: min(235px, 65%);
+        transform: translateX(-50%) rotate(-8deg);
+      }
+
+      .photo-back {
+        right: 5%;
+        width: min(200px, 55%);
+      }
+
+      .date-strip {
+        grid-template-columns: 85px 1fr;
+        gap: 18px;
+      }
+
+      .date-stamp {
+        width: 80px;
+        height: 80px;
+      }
+
+      .date-stamp strong {
+        font-size: 1.2rem;
+      }
+
+      .date-message h2 {
+        font-size: 1.05rem;
+      }
+
+      .calendar {
+        grid-column: 1 / -1;
+        width: min(300px, 100%);
+        justify-self: center;
+        margin-top: 10px;
+      }
+
+      .letter-section, .reasons-section {
+        padding-top: 70px;
+      }
+
+      .letter {
+        padding: 35px 24px;
+        font-size: 0.88rem;
+      }
+
+      .reasons {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .reason, .cream, .sage, .blush {
+        transform: none;
+        min-height: auto;
+      }
+
+      .reason h3 {
+        margin-top: 20px;
+      }
+
+      .closing {
+        padding: 60px 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto;
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="navbar">
+    <a href="#" class="logo">kunting love notes ♡</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">♥ HI LOVEY</p>
+        <h1>Happy Birthday,<br><em>my love.</em></h1>
+        <p class="intro">
+          A little scrapbook for my favorite person,
+          filled with love, memories, and all the things
+          I wish I could wrap into one big hug.
+        </p>
+        <a href="#letter" class="main-btn">Open your letter ↘</a>
+        <p class="handwritten">for you, always ♡</p>
+      </div>
+
+      <div class="scrapbook">
+        <div class="sunburst"></div>
+
+        <div class="photo photo-back">
+          <span>✿</span>
+          <p>you make<br>life lovely</p>
+        </div>
+
+        <div class="photo photo-front">
+          <div class="heart-art">
+            <img
+              src="us.jpg"
+              alt="Our favorite picture together"
+              class="couple-photo"
+            >
+          </div>
+          <p class="handwritten">my favorite<br>kind of magic</p>
+        </div>
+
+        <div class="tape"></div>
+
+        <div class="sticker">
+          LOVE<br><span>you</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="date-strip">
+      <div class="date-stamp">
+        <small>OCTOBER</small>
+        <strong>11</strong>
+        <small>YOUR SPECIAL DAY</small>
+      </div>
+
+      <div class="date-message">
+        <p class="eyebrow">OCTOBER 11</p>
+        <h2>
+          Another year of you being you and I still feel lucky
+          that I get to love you.
+        </h2>
+      </div>
+
+      <div class="calendar">
+        <h3>♡ OCTOBER 11 ♡</h3>
+        <div class="weekdays">
+          <span>S</span><span>M</span><span>T</span>
+          <span>W</span><span>T</span><span>F</span><span>S</span>
+        </div>
+        <div class="days" id="calendar"></div>
+        <p class="handwritten">the world got sweeter today</p>
+      </div>
+    </section>
+
+    <section id="letter" class="letter-section">
+      <p class="eyebrow">SEALED WITH HUG AND KISS MWEHEHEHEHE</p>
+      <h2>A letter, <em>just for you Lovey.</em></h2>
+
+      <article class="letter">
+        <span class="letter-heart">♡</span>
+        <p class="handwritten greeting">To my ZHENZEIR SHANE LAZAGA</p>
+        <p>Happy birthday, my love! ♡</p>
+
+        <p>
+          Today is special because it's the day someone as wonderful
+          as you came into this world. I hope you know how much
+          happiness you bring into my life, even through the smallest
+          things, your smile, your laugh, and the way you make
+          ordinary days feel special.
+        </p>
+
+        <p>
+          Thank you for being you lablab, for letting me be part of your
+          world (hehehe), and for giving me so many reasons to be grateful.
+          I may not always find the perfect words, but I'll keep doing
+          my best to show you how loved, appreciated, and important
+          you are to me.
+        </p>
+
+        <p>
+          As you begin another chapter, I wish you peace in your
+          heart, courage for your dreams, good health, and countless
+          reasons to smile. I hope life is gentle with you, and that
+          you never forget how deserving you are of beautiful things.
+        </p>
+
+        <p>
+          Whatever this year brings, I'm cheering for you.
+          I'll celebrate your wins, remind you of your strength
+          on hard days, and keep choosing kindness, patience,
+          and love as we grow together.
+        </p>
+
+        <p>
+          Enjoy your day my love. You deserve to feel extra special
+          today and every day. If I could give you one thing, it would
+          be the ability to see yourself through my eyes then you'd
+          understand just how precious you are to me(kahit ayaw mo maniwala sakin hehehehe).
+        </p>
+
+        <p class="handwritten signature">
+          I love you, always and in all ways. ♡
+        </p>
+
+        <div class="letter-footer">
+          <span>MADE BY ASAWA MO</span>
+          <span>✿</span>
+          <span>FOR YOU LANG</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="reasons-section">
+      <p class="eyebrow">MGA SMALL THINGS NA BAGAY NASA BABA </p>
+      <h2>Reasons I'm <em>thankful for you.</em></h2>
+
+      <div class="reasons">
+        <article class="reason blush">
+          <span>01 · ☼</span>
+          <h3>Your smile</h3>
+          <p>
+            It makes even a regular day feel like something worth
+            remembering.
+          </p>
+        </article>
+
+        <article class="reason cream">
+          <span>02 · ♡</span>
+          <h3>Your heart</h3>
+          <p>
+            The kindness and care you give make the world feel softer.
+          </p>
+        </article>
+
+        <article class="reason sage">
+          <span>03 · ✿</span>
+          <h3>Your little ways</h3>
+          <p>
+            All the tiny things that make you wonderfully,
+            completely you.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="closing">
+      <span class="flower">✿</span>
+      <p class="eyebrow">ONE LAST THING...</p>
+      <h2>You are loved more<br>than this little page can say.</h2>
+
+      <p>
+        I hope your birthday is full of warm hugs, happy surprises,
+        and the kind of joy that stays with you long after today.
+      </p>
+
+      <p class="handwritten closing-sign">
+        Happy birthday, love ♡
+      </p>
+
+      <button id="surpriseBtn" class="surprise-btn" type="button">
+        Tap for a little surprise ✨
+      </button>
+
+      <p id="surpriseMessage" class="surprise-message" hidden>
+        I'll always be here to support you, my love.
+         You make my world happier, and I'm so blessed to have you. 
+         I love you always. ♡
+ ♡
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    MASAYA KA SANA SA BIRTHDAY MO
+  </footer>
+
+  <script>
+    // Fixed birthday date: October 11
+    // The year automatically follows the current year.
+    const birthdayMonth = 9; // October (January = 0)
+    const birthdayDay = 11;
+
+    const calendar = document.getElementById("calendar");
+
+    function renderCalendar(month, year, markedDay) {
+      calendar.innerHTML = "";
+
+      const firstDay = new Date(year, month, 1).getDay();
+      const totalDays = new Date(year, month + 1, 0).getDate();
+
+      for (let i = 0; i < firstDay; i++) {
+        const blank = document.createElement("span");
+        blank.setAttribute("aria-hidden", "true");
+        calendar.appendChild(blank);
+      }
+
+      for (let day = 1; day <= totalDays; day++) {
+        const cell = document.createElement("span");
+        cell.textContent = day;
+
+        if (day === markedDay) {
+          cell.classList.add("marked");
+          cell.setAttribute("aria-label", "Birthday: October " + day);
+        }
+
+        calendar.appendChild(cell);
+      }
+    }
+
+    renderCalendar(
+      birthdayMonth,
+      new Date().getFullYear(),
+      birthdayDay
+    );
+
+    // Surprise message and floating hearts
+    const surpriseBtn = document.getElementById("surpriseBtn");
+    const surpriseMessage = document.getElementById("surpriseMessage");
+
+    function createHeart() {
+      const heart = document.createElement("span");
+      heart.className = "floating-heart";
+      heart.textContent = Math.random() > 0.5 ? "♡" : "♥";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (16 + Math.random() * 25) + "px";
+      heart.style.animationDuration = (2.5 + Math.random() * 2) + "s";
+
+      document.body.appendChild(heart);
+
+      heart.addEventListener("animationend", () => {
+        heart.remove();
+      }, { once: true });
+    }
+
+    surpriseBtn.addEventListener("click", () => {
+      surpriseMessage.hidden = false;
+      surpriseBtn.textContent = "Sending you lots of love ♡";
+
+      for (let i = 0; i < 22; i++) {
+        setTimeout(createHeart, i * 100);
+      }
+    });
+  </script>
+</body>
+</html>
